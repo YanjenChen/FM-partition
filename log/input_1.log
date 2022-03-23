@@ -1,0 +1,48 @@
+
+==================== Parse Input ====================
+[Info]: Load circuit with 3000 cells and 5000 nets.
+[Info]: Balance factor = 0.01
+[Info]: Initial cutsize = 2400
+
+==================== Iteration 0 ====================
+[Info]: partSize(A) = 1500, partSize(B) = 1500
+[Info]: Move 1297 cell(s).
+[Info]: Optmized cutsize: 1425
+[Info]: Max acc-gain: 975
+
+==================== Iteration 1 ====================
+[Info]: partSize(A) = 1515, partSize(B) = 1485
+[Info]: Move 578 cell(s).
+[Info]: Optmized cutsize: 1286
+[Info]: Max acc-gain: 139
+
+==================== Iteration 2 ====================
+[Info]: partSize(A) = 1515, partSize(B) = 1485
+[Info]: Move 276 cell(s).
+[Info]: Optmized cutsize: 1254
+[Info]: Max acc-gain: 32
+
+==================== Iteration 3 ====================
+[Info]: partSize(A) = 1515, partSize(B) = 1485
+[Info]: Move 142 cell(s).
+[Info]: Optmized cutsize: 1251
+[Info]: Max acc-gain: 3
+
+==================== Iteration 4 ====================
+[Info]: partSize(A) = 1515, partSize(B) = 1485
+[Info]: Move 8 cell(s).
+[Info]: Optmized cutsize: 1250
+[Info]: Max acc-gain: 1
+
+==================== Iteration 5 ====================
+[Info]: partSize(A) = 1515, partSize(B) = 1485
+
+==================== Summary ====================
+ Intial cutsize:    2400
+ Optmized Cutsize:  1250
+ Total cell number: 3000
+ Total net number:  5000
+ Cell Number of partition A: 1515
+ Cell Number of partition B: 1485
+=================================================
+

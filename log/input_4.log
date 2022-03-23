@@ -1,0 +1,144 @@
+
+==================== Parse Input ====================
+[Info]: Load circuit with 150750 cells and 166998 nets.
+[Info]: Balance factor = 0.01
+[Info]: Initial cutsize = 82801
+
+==================== Iteration 0 ====================
+[Info]: partSize(A) = 75375, partSize(B) = 75375
+[Info]: Move 64073 cell(s).
+[Info]: Optmized cutsize: 51769
+[Info]: Max acc-gain: 31032
+
+==================== Iteration 1 ====================
+[Info]: partSize(A) = 76126, partSize(B) = 74624
+[Info]: Move 25348 cell(s).
+[Info]: Optmized cutsize: 47294
+[Info]: Max acc-gain: 4475
+
+==================== Iteration 2 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 16098 cell(s).
+[Info]: Optmized cutsize: 46090
+[Info]: Max acc-gain: 1204
+
+==================== Iteration 3 ====================
+[Info]: partSize(A) = 76126, partSize(B) = 74624
+[Info]: Move 12540 cell(s).
+[Info]: Optmized cutsize: 45605
+[Info]: Max acc-gain: 485
+
+==================== Iteration 4 ====================
+[Info]: partSize(A) = 76126, partSize(B) = 74624
+[Info]: Move 10496 cell(s).
+[Info]: Optmized cutsize: 45366
+[Info]: Max acc-gain: 239
+
+==================== Iteration 5 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 9420 cell(s).
+[Info]: Optmized cutsize: 45252
+[Info]: Max acc-gain: 114
+
+==================== Iteration 6 ====================
+[Info]: partSize(A) = 76126, partSize(B) = 74624
+[Info]: Move 8540 cell(s).
+[Info]: Optmized cutsize: 45217
+[Info]: Max acc-gain: 35
+
+==================== Iteration 7 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 8468 cell(s).
+[Info]: Optmized cutsize: 45180
+[Info]: Max acc-gain: 37
+
+==================== Iteration 8 ====================
+[Info]: partSize(A) = 76126, partSize(B) = 74624
+[Info]: Move 8218 cell(s).
+[Info]: Optmized cutsize: 45158
+[Info]: Max acc-gain: 22
+
+==================== Iteration 9 ====================
+[Info]: partSize(A) = 76126, partSize(B) = 74624
+[Info]: Move 8318 cell(s).
+[Info]: Optmized cutsize: 45135
+[Info]: Max acc-gain: 23
+
+==================== Iteration 10 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 7930 cell(s).
+[Info]: Optmized cutsize: 45126
+[Info]: Max acc-gain: 9
+
+==================== Iteration 11 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 5074 cell(s).
+[Info]: Optmized cutsize: 45122
+[Info]: Max acc-gain: 4
+
+==================== Iteration 12 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 6844 cell(s).
+[Info]: Optmized cutsize: 45109
+[Info]: Max acc-gain: 13
+
+==================== Iteration 13 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 7106 cell(s).
+[Info]: Optmized cutsize: 45086
+[Info]: Max acc-gain: 23
+
+==================== Iteration 14 ====================
+[Info]: partSize(A) = 76126, partSize(B) = 74624
+[Info]: Move 7888 cell(s).
+[Info]: Optmized cutsize: 45077
+[Info]: Max acc-gain: 9
+
+==================== Iteration 15 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 7692 cell(s).
+[Info]: Optmized cutsize: 45072
+[Info]: Max acc-gain: 5
+
+==================== Iteration 16 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 7050 cell(s).
+[Info]: Optmized cutsize: 45060
+[Info]: Max acc-gain: 12
+
+==================== Iteration 17 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 524 cell(s).
+[Info]: Optmized cutsize: 45059
+[Info]: Max acc-gain: 1
+
+==================== Iteration 18 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 7272 cell(s).
+[Info]: Optmized cutsize: 45057
+[Info]: Max acc-gain: 2
+
+==================== Iteration 19 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 7592 cell(s).
+[Info]: Optmized cutsize: 45055
+[Info]: Max acc-gain: 2
+
+==================== Iteration 20 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+[Info]: Move 212 cell(s).
+[Info]: Optmized cutsize: 45054
+[Info]: Max acc-gain: 1
+
+==================== Iteration 21 ====================
+[Info]: partSize(A) = 76128, partSize(B) = 74622
+
+==================== Summary ====================
+ Intial cutsize:    82801
+ Optmized Cutsize:  45054
+ Total cell number: 150750
+ Total net number:  166998
+ Cell Number of partition A: 76128
+ Cell Number of partition B: 74622
+=================================================
+
