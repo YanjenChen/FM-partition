@@ -10,6 +10,7 @@
 #include <chrono>
 #include <typeinfo>
 #include <type_traits>
+#include <algorithm>
 #include "cell.h"
 #include "net.h"
 #include "partitioner.h"
@@ -25,6 +26,10 @@ template <
 auto since(chrono::time_point<clock_t, duration_t> const& start) -> decltype( chrono::duration_cast<result_t>(clock_t::now() - start) )
 {
     return chrono::duration_cast<result_t>(clock_t::now() - start);
+}
+
+int cmp(pair<int, int> a, pair<int, int> b) {
+    return a.first < b.first;
 }
 
 void Partitioner::parseInput(fstream& inFile)
@@ -77,7 +82,7 @@ void Partitioner::parseInput(fstream& inFile)
     }
 
     cout << endl;
-    cout << "==================== Parse Input ====================" << endl;
+    //cout << "==================== Parse Input ====================" << endl;
     cout << "[Info]: Load circuit with " << _cellNum << " cells and " << _netNum << " nets." << endl;
     cout << "        Balance factor: " << _bFactor << endl;
 
@@ -158,6 +163,34 @@ void Partitioner::partition()
             _maxPinNum = cell->getPinNum();
 
     // Init partition
+    /*
+    vector<pair<int, int>> pins;    // <pins, netId>
+    for (Net* net: _netArray)
+        pins.push_back( make_pair(net->getCellList().size(), _netName2Id[net->getName()]) );
+    assert(pins.size() == _netArray.size());
+    sort(pins.begin(), pins.end(), cmp);
+    _partSize[0] = 0;
+    _partSize[1] = 0;
+    for (auto x: pins) {
+        for (int cellId: _netArray[x.second]->getCellList()) {
+            if (_cellArray[cellId]->getLock())
+                continue;
+
+            if (_partSize[0] >= _cellNum * 0.5) {
+                _cellArray[cellId]->move();
+                _partSize[1]++;
+            }
+            else if (_partSize[1] >= _cellNum * 0.5) {
+                _partSize[0]++;
+            }
+            else {
+                    _partSize[0]++;
+            }
+
+            _cellArray[cellId]->lock();
+        }
+    }
+    */
     for(int i = _cellNum * 0.5; i < _cellNum; i++)
         _cellArray[i]->move();
 
@@ -174,13 +207,13 @@ void Partitioner::partition()
     for (Net* net: _netArray)
         if (net->getPartCount(0) != 0 && net->getPartCount(1) != 0)
             _initCutSize++;
-    cout << "[Info]: Initial cutsize = " << _initCutSize << endl;
+    //cout << "[Info]: Initial cutsize = " << _initCutSize << endl;
 
     // Fire optimization!!
     _iterNum = 0;
     do {
-        cout << endl;
-        cout << "==================== Iteration " << _iterNum <<" ====================" << endl;
+        //cout << endl;
+        //cout << "==================== Iteration " << _iterNum <<" ====================" << endl;
         /* Update informations base on Cell states */
         // Reset everything except Cell->_part
         _partSize[0] = 0;
@@ -210,7 +243,7 @@ void Partitioner::partition()
             _partSize[cell->getPart()]++;
         }
 
-        cout << "[Info]: partSize(A) = " << _partSize[0] << ", partSize(B) = " << _partSize[1] << endl;
+        //cout << "[Info]: partSize(A) = " << _partSize[0] << ", partSize(B) = " << _partSize[1] << endl;
 
         _unlockNum[0] = _partSize[0];
         _unlockNum[1] = _partSize[1];
@@ -236,13 +269,10 @@ void Partitioner::partition()
                         iter1++;
                     }
                 }
-                while( _maxGainCell != nullptr && !isBalanced(_maxGainCell->getId()) ) {
-                    //cout << "[Info]: ... _maxGainCell " << _maxGainCell->getId() << " with gain "<< _cellArray[_maxGainCell->getId()]->getGain() <<" doesn't match balanced criteria, retrive next node." << endl;
-
-                    _maxGainCell = _maxGainCell->getNext();
-                }
-            } while (_maxGainCell == nullptr && ( iter0 != _bList[0].rend() || iter1 != _bList[1].rend() ) );
+                assert(_maxGainCell != nullptr);
+            } while (!isBalanced(_maxGainCell->getId()) && ( iter0 != _bList[0].rend() || iter1 != _bList[1].rend() ) );
             assert(_maxGainCell != nullptr);
+            assert(isBalanced(_maxGainCell->getId()));
 
             //cout << "[Info]: Select _maxGainCell " << _maxGainCell->getId() << " with gain "<< _cellArray[_maxGainCell->getId()]->getGain() << endl;
 
@@ -251,9 +281,6 @@ void Partitioner::partition()
             selectedCell->lock();
             // Update gain
             for (int netId: selectedCell->getNetList()) {
-                /*
-                 * TODO: skip update gain if a net has locked cell on both side.
-                 */
 
                 int cnt_t1 = 0, cnt_f1 = 0;
                 if (T(netId, selectedCell) == 0) { // T(n) == 0 before move
@@ -279,6 +306,7 @@ void Partitioner::partition()
                             // update position in bucket list
                             insertToBList(_cellArray[cellId]);
                             cnt_t1++;
+                            break;
                         }
                 }
                 // Update partCount to represent movement
@@ -308,6 +336,7 @@ void Partitioner::partition()
                             // update position in bucket list
                             insertToBList(_cellArray[cellId]);
                             cnt_f1++;
+                            break;
                         }
                 }
             }
@@ -349,6 +378,7 @@ void Partitioner::partition()
                 _cellArray[step.first]->move();
                 _moveNum++;
             }
+            /*
             // Count net->_partCount
             for (Net* net: _netArray) {
                 net->setPartCount(0, 0);
@@ -364,11 +394,10 @@ void Partitioner::partition()
             cout << "[Info]: Move " << _bestMoveNum + 1 << " cell(s)." << endl;
             cout << "[Info]: Optmized cutsize: " << _cutSize << endl;
             cout << "[Info]: Max acc-gain: " << _maxAccGain << endl;
+            */
         }
 
         _iterNum++;
-
-        cout << "[Info]: Elapsed (ms): " << since(start).count() << std::endl;
 
     } while (_maxAccGain > 0);
 
@@ -390,6 +419,8 @@ void Partitioner::partition()
     for (Net* net: _netArray)
         if (net->getPartCount(0) != 0 && net->getPartCount(1) != 0)
             _cutSize++;
+
+    cout << "[Info]: Elapsed (ms): " << since(start).count() << std::endl;
 
     return;
 }
