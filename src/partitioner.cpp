@@ -163,7 +163,6 @@ void Partitioner::partition()
             _maxPinNum = cell->getPinNum();
 
     // Init partition
-    /*
     vector<pair<int, int>> pins;    // <pins, netId>
     for (Net* net: _netArray)
         pins.push_back( make_pair(net->getCellList().size(), _netName2Id[net->getName()]) );
@@ -171,6 +170,8 @@ void Partitioner::partition()
     sort(pins.begin(), pins.end(), cmp);
     _partSize[0] = 0;
     _partSize[1] = 0;
+    //srand(114514);
+    //bool flip;
     for (auto x: pins) {
         for (int cellId: _netArray[x.second]->getCellList()) {
             if (_cellArray[cellId]->getLock())
@@ -184,15 +185,16 @@ void Partitioner::partition()
                 _partSize[0]++;
             }
             else {
-                    _partSize[0]++;
+                _partSize[0]++;
             }
 
             _cellArray[cellId]->lock();
         }
     }
-    */
+    /*
     for(int i = _cellNum * 0.5; i < _cellNum; i++)
         _cellArray[i]->move();
+    */
 
     /* Update initial stats */
     // Count net->_partCount
